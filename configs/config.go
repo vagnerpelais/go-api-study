@@ -1,4 +1,4 @@
-package config
+package configs
 
 import "github.com/spf13/viper"
 
@@ -28,7 +28,7 @@ func init() {
 	viper.SetDefault("database.port", "5432")
 }
 
-func load() error {
+func Load() error {
 	viper.SetConfigName("config")
 	viper.SetConfigType("toml")
 	viper.AddConfigPath(".")

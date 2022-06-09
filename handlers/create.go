@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -20,18 +21,17 @@ func Create(w http.ResponseWriter, r *http.Request) {
 
 	id, err := models.Insert(todo)
 
-	var resp map[string]any.Id
+	var resp map[string]any
 
 	if err != nil {
-		resp= map[string]any{
-			"Error": true,
-			"Message": fmt.Sprintf("Ocorreu um erro ao tentar inserir: %v", err)
-		}
-	}else{
 		resp = map[string]any{
-			"Error": false,
+			"Error":   true,
+			"Message": fmt.Sprintf("Ocorreu um erro ao tentar inserir: %v", err),
+		}
+	} else {
+		resp = map[string]any{
+			"Error":   false,
 			"Message": fmt.Sprintf("Todo inserido com sucesso! ID: %d", id),
-
 		}
 	}
 
